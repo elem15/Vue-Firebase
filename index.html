@@ -11,8 +11,12 @@
     Hello Vue :)
   </h1>
   <div id="app">
-    {{title}} - {{author}}
-    <!-- I am a template now! -->
+    <p>{{title}} - {{author}} - {{age}}</p>
+    <button v-on:click="age++">Increase age</button>
+    <button v-on:click="age--">Decrease age</button>
+    <button @click="title = 'Hobbit'">Change title</button>
+    <button @click="returnTitle">Return old title</button>
+    <button @click="thirdTitle('Silmarion')">Alternative  title</button>
   </div>
 </body>
 <script src="app.js"></script>
