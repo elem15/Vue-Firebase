@@ -3,8 +3,9 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="index.css">
   <title>Vue Learning</title>
-  <script src="https://unpkg.com/vue@3.0.2/dist/vue.global.js"></script>
+  <script src="https://unpkg.com/vue@3.0.2/dist/vue.global.js"></script>  
 </head>
 <body>
   <h1>
@@ -25,6 +26,10 @@
     <button @click="returnTitle">Return old title</button>
     <button @click="thirdTitle('Silmarion')">Alternative  title</button>
     <div v-show="visibility">Show books</div>
+    <div class="box" @mouseover="handleEvent($event, 5, 6, 7)">mouse over (enter)</div>
+    <div class="box" @mouseleave="handleEvent">mouse leave</div>
+    <div class="box" @dblclick="handleEvent">double click</div>
+    <div class="box" @mousemove="handleMouseMove">position - <br> x: {{x}} <br> y: {{y}}</div>
   </div>
 </body>
 <script src="app.js"></script>
