@@ -4,7 +4,8 @@ const app = Vue.createApp({
     return {
       title: 'The Lord of Rings',
       author: 'JRR Tolkien',
-      age: 100
+      age: 100,
+      visibility: true
     }
   },
   methods: {
@@ -13,6 +14,9 @@ const app = Vue.createApp({
     },
     thirdTitle(title) {
       this.title = title;
+    },
+    toggleVisibility() {
+      this.visibility = !this.visibility;
     }
   }
 });

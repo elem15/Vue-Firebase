@@ -11,12 +11,20 @@
     Hello Vue :)
   </h1>
   <div id="app">
-    <p>{{title}} - {{author}} - {{age}}</p>
+    <div v-if="visibility">
+      <p>{{title}} - {{author}} - {{age}}</p>
+    </div>
+    <button @click="toggleVisibility">
+      <span v-if="visibility">hide books</span>
+      <!-- <span v-if="!visibility">show books</span> -->
+      <span v-else>show books</span>
+    </button>
     <button v-on:click="age++">Increase age</button>
     <button v-on:click="age--">Decrease age</button>
     <button @click="title = 'Hobbit'">Change title</button>
     <button @click="returnTitle">Return old title</button>
     <button @click="thirdTitle('Silmarion')">Alternative  title</button>
+    <div v-show="visibility">Show books</div>
   </div>
 </body>
 <script src="app.js"></script>
