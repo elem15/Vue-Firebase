@@ -8,6 +8,11 @@ const app = Vue.createApp({
       visibility: true,
       x: 0,
       y: 0,
+      books: [
+        { author: 'Jack London', title: 'White Fang'},
+        { author: 'Jack London', title: 'The Call of the Wild'},
+        { author: 'Ernest Hemingway', title: 'The Torrents of Spring'},
+      ]
     }
   },
   methods: {
@@ -20,11 +25,11 @@ const app = Vue.createApp({
     toggleVisibility() {
       this.visibility = !this.visibility;
     },
-    handleEvent(...arg) {
-      console.log(arg[0].type)
-      if(arg[1]) console.log(arg[1])
-      if(arg[2]) console.log(arg[2])
-      if(arg[3]) console.log(arg[3])
+    handleEvent(...args) {
+      args.map((arg, idx) => {
+        if (idx === 0) console.log(arg.type);
+        else console.log(arg)
+      })    
     },
     handleMouseMove(e) {
       this.x = e.offsetX;
