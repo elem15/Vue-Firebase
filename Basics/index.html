@@ -33,7 +33,13 @@
     <!-- change display without remove from DOM -->
     <div v-if="visibility">
       <ul v-for="book in books">
-        <li :class="{ fav: book.isFav}">{{book.title}} - {{book.author}} - <img :src="book.img" :alt="book.title"></li>
+        <li :class="{ fav: book.isFav }" @click="toggleFav(book)">{{book.title}} - {{book.author}} - <img :src="book.img" :alt="book.title"></li>
+      </ul>
+    </div>    
+    <hr>
+    <div v-if="visibility">
+      <ul v-for="book in favoriteBooks">
+        <li :class="{ fav: book.isFav }" @click="toggleFav(book)">{{book.title}} - {{book.author}} - <img :src="book.img" :alt="book.title"></li>
       </ul>
     </div>    
     <div class="box" @mouseover="handleEvent($event, 5, 6, 7)">mouse over (enter)</div>
