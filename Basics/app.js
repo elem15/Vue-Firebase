@@ -2,6 +2,7 @@ console.log('Hello, Vue :)');
 const app = Vue.createApp({
   data() {
     return {
+      url: 'https://www.google.com',
       title: 'The Lord of Rings',
       author: 'JRR Tolkien',
       age: 100,
@@ -9,9 +10,9 @@ const app = Vue.createApp({
       x: 0,
       y: 0,
       books: [
-        { author: 'Jack London', title: 'White Fang'},
-        { author: 'Jack London', title: 'The Call of the Wild'},
-        { author: 'Ernest Hemingway', title: 'The Torrents of Spring'},
+        { author: 'Jack London', title: 'White Fang', img: 'assets/parrot.png', isFav: true },
+        { author: 'Jack London', title: 'The Call of the Wild', isFav: false },
+        { author: 'Ernest Hemingway', title: 'The Torrents of Spring', isFav: false },
       ]
     }
   },
