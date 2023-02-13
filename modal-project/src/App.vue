@@ -5,7 +5,7 @@
     <button @click="handleEvent">Click me</button>
   </div>
   <p>{{text}}</p>
-  <Modal />
+  <Modal :header="header" :footer='footer' theme='dark'/>
 </template>
 
 <script>
@@ -18,7 +18,9 @@ export default {
   data() {
     return {
       title: 'My first Vue App :)',
-      text: ''
+      text: '',
+      header: "Sign up",
+      footer: 'All rights register'
     }
   },
   methods: {

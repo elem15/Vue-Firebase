@@ -1,8 +1,9 @@
 <template>
   <div class="dark-drop">
-    <div class="modal">
-      <h1>Modal title</h1>      
+    <div class="modal" :class="{ sale: theme === 'sale', dark: theme === 'dark'  }">
+      <h1>{{header}}</h1>      
       <p class="content">modal content</p>
+      <footer>{{footer}}</footer>
     </div>
   </div>
 </template>
@@ -10,6 +11,7 @@
 <script>
 export default {
   name: "Modal",
+  props: ['header', 'footer', 'theme']
 };
 </script>
 
@@ -33,10 +35,16 @@ export default {
   width: 100%;
   height: 100%;
 }
-h1 {
+.modal h1 {
   color: green;
   border: none;
   padding: 0;
+}
+.modal.sale {
+  background-color: coral;
+}
+.modal.dark {
+  background-color: rgb(201, 174, 165);
 }
 
 </style>
