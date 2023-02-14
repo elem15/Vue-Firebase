@@ -9,25 +9,21 @@
     <button @click.ctrl="toggleModal">Open Modal (with CTRL)</button>
     <button @click="toggleModalTwo">Open Modal Two</button>
   </div>
+  <teleport to="#modals" v-if="isModal">
+    <Modal :header="header" :footer="footer" theme="dark" @close="toggleModal">
+      <h2>Info from SLOT</h2>
+      <template v-slot:links>
+        <div class="actions">
+          <a href="#">sign in</a> <a href="#">more info</a>
+        </div>
+      </template>
+    </Modal>
+  </teleport>
+  <teleport to="#modals" v-if="isModalTwo">
   <Modal
     :header="header"
     :footer="footer"
     theme="sale"
-    v-if="isModal"
-    @close="toggleModal"
-  >
-    <h2>Info from SLOT</h2>
-    <template v-slot:links>
-      <div class="actions">
-        <a href="#">sign in</a> <a href="#">more info</a>
-      </div>
-    </template>
-  </Modal>
-  <Modal
-    :header="header"
-    :footer="footer"
-    theme="sale"
-    v-if="isModalTwo"
     @close="toggleModalTwo"
   >
     <h2>Modal TWO</h2>
@@ -37,6 +33,7 @@
       </div>
     </template>
   </Modal>
+  </teleport>
 </template>
 
 <script>
@@ -75,7 +72,7 @@ export default {
 </script>
 
 <style>
-#app {
+#app, #modals {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -94,7 +91,7 @@ h1 {
 .actions a {
   display: inline-block;
   text-decoration: none;
-  padding: 5px 10px;  
+  padding: 5px 10px;
   border: 1px solid blueviolet;
   border-radius: 3px;
 }
