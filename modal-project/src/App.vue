@@ -1,38 +1,77 @@
 <template>
-  <h1>{{title}}</h1>
+  <h1>{{ title }}</h1>
   <div>
-    <input type="text" ref="name">
+    <input type="text" ref="name" />
     <button @click="handleEvent">Click me</button>
   </div>
-  <p>{{text}}</p>
-  <Modal :header="header" :footer='footer' theme='dark'/>
+  <p>{{ text }}</p>
+  <div>
+    <button @click.ctrl="toggleModal">Open Modal (with CTRL)</button>
+    <button @click="toggleModalTwo">Open Modal Two</button>
+  </div>
+  <Modal
+    :header="header"
+    :footer="footer"
+    theme="sale"
+    v-if="isModal"
+    @close="toggleModal"
+  >
+    <h2>Info from SLOT</h2>
+    <template v-slot:links>
+      <div class="actions">
+        <a href="#">sign in</a> <a href="#">more info</a>
+      </div>
+    </template>
+  </Modal>
+  <Modal
+    :header="header"
+    :footer="footer"
+    theme="sale"
+    v-if="isModalTwo"
+    @close="toggleModalTwo"
+  >
+    <h2>Modal TWO</h2>
+    <template v-slot:links>
+      <div class="actions">
+        <a href="#">sign in</a> <a href="#">more info</a>
+      </div>
+    </template>
+  </Modal>
 </template>
 
 <script>
-import Modal from './components/Modal.vue'
+import Modal from "./components/Modal.vue";
 export default {
-  name: 'App',  
+  name: "App",
   components: {
     Modal,
   },
   data() {
     return {
-      title: 'My first Vue App :)',
-      text: '',
-      header: "Sign up",
-      footer: 'All rights register'
-    }
+      title: "My first Vue App :)",
+      text: "",
+      header: "Modal",
+      footer: "All rights register",
+      isModal: false,
+      isModalTwo: false,
+    };
   },
   methods: {
     handleEvent() {
-      const input = this.$refs.name
-      console.log(input.value)
-      input.className = 'active';
+      const input = this.$refs.name;
+      console.log(input.value);
+      input.className = "active";
       input.focus();
       this.text = input.value;
-    }
-  }
-}
+    },
+    toggleModal() {
+      this.isModal = !this.isModal;
+    },
+    toggleModalTwo() {
+      this.isModalTwo = !this.isModalTwo;
+    },
+  },
+};
 </script>
 
 <style>
@@ -51,5 +90,15 @@ h1 {
 }
 .active {
   border-color: green;
+}
+.actions a {
+  display: inline-block;
+  text-decoration: none;
+  padding: 5px 10px;  
+  border: 1px solid blueviolet;
+  border-radius: 3px;
+}
+.actions :last-child {
+  margin-left: 30px;
 }
 </style>

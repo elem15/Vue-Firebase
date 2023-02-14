@@ -1,8 +1,11 @@
 <template>
-  <div class="dark-drop">
+  <div class="dark-drop" @click.self="closeModal">
     <div class="modal" :class="{ sale: theme === 'sale', dark: theme === 'dark'  }">
       <h1>{{header}}</h1>      
       <p class="content">modal content</p>
+      <slot></slot>
+      <slot name="links"></slot>
+      <br>
       <footer>{{footer}}</footer>
     </div>
   </div>
@@ -11,7 +14,12 @@
 <script>
 export default {
   name: "Modal",
-  props: ['header', 'footer', 'theme']
+  props: ['header', 'footer', 'theme'],
+  methods: {
+    closeModal() {
+      this.$emit('close');
+    }
+  }
 };
 </script>
 
@@ -19,7 +27,7 @@ export default {
 <style scoped>
 .modal {
   width: 400px;
-  height: 200px;
+  height: 350px;
   margin: 200px auto;
   background: whitesmoke;
   border-radius: 10px;
