@@ -1,47 +1,29 @@
 <template>
-  <div>
-    <button @click="handleStartEvent">Start Game!</button>
-  </div>
-  <div>
-    <button v-show="isTimerButton" @click="handleFinishEvent">Catch it!</button>
-  </div>
-  <div>
-    <span v-show="isResultView">Your reaction speed: {{resultedSec}} seconds, {{resultedMSec}} ms</span>
-  </div>
+  <h1>Reaction Timer</h1>
+  <button @click="start" :disabled="isPlaying">Start</button>
+  <Block v-if="isPlaying" v-bind:delay="delay"/>
 </template>
 
 <script>
-
+import Block from "./components/Block.vue";
 export default {
-  name: 'App',
+  name: "App",
+  components: {
+    Block,
+  },
   data() {
     return {
-      isTimerButton: false,
-      isResultView: false,
-      result: 0,
-      resultedSec: 0,
-      resultedMSec: 0,
-      startTime: 0,
-      finishTime: 0,
-    }
+      isPlaying: false,
+      delay: null,
+    };
   },
   methods: {
-    handleStartEvent() {
-      setTimeout(() => {
-        this.isTimerButton = true;
-        this.startTime = new Date();
-      }, 1000)
+    start() {
+      this.delay = 1000 + Math.random() * 3000;
+      this.isPlaying = true;
     },
-    handleFinishEvent() {
-      this.finishTime = new Date();
-      this.result = this.finishTime - this.startTime;
-      this.resultedSec = Math.trunc((this.result / 1000));
-      this.resultedMSec = this.result - this.resultedSec * 1000; 
-      this.isTimerButton = false;
-      this.isResultView = true;
-    }
-  }
-}
+  },
+};
 </script>
 
 <style>
@@ -50,7 +32,7 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
+  color: #444;
   margin-top: 60px;
 }
 </style>
