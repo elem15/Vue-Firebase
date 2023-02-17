@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import Jobs from '../views/jobs/Jobs.vue'
+import NotFound from '../views/jobs/NotFound.vue'
 import JobView from '../views/jobs/JobView.vue'
 
 const routes = [
@@ -13,7 +14,10 @@ const routes = [
     path: '/jobs',
     name: 'Jobs',
     component: Jobs,
-    props: true
+  },
+  {
+    path: '/new-jobs',
+    redirect: '/jobs'
   },
   {
     path: '/jobs/:id',
@@ -28,6 +32,11 @@ const routes = [
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
+  },
+  {
+    path: '/:catchAll(.*)',
+    name: 'NotFound',
+    component: NotFound
   }
 ]
 
