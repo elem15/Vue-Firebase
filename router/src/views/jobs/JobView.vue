@@ -1,20 +1,25 @@
 <template>
-  <div>
+  <div v-if="job">
     <h1>The job details</h1>
-    <h2>{{ getJob.title }}</h2>
-    <p>{{ getJob.details }}</p>
+    <h2>{{ job.title }}</h2>
+    <p>{{ job.details }}</p>
   </div>
+  <div v-else>Loading job details...</div>
 </template>
 
 <script>
-import jobs from "../../assets/jobs.js";
-
 export default {
   props: ["id"],
-  computed: {
-    getJob() {
-      return jobs.find((job) => job.id === +this.id);
-    },
+  data() {
+    return {
+      job: null,
+    };
+  },
+  mounted() {
+    fetch("http://localhost:3000/jobs/" + this.id)
+      .then((res) => res.json())
+      .then((job) => (this.job = job))
+      .catch((err) => console.log(err.message));
   },
 };
 </script>
