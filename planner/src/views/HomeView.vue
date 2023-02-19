@@ -2,7 +2,11 @@
   <div class="home">
     <div v-if="projects.length">
       <div v-for="project in projects" :key="project.id">
-        <Project :project="project" @delete="handleDelete" />
+        <Project
+          :project="project"
+          @delete="handleDelete"
+          @patch="handleUpdate"
+        />
       </div>
     </div>
   </div>
@@ -31,6 +35,10 @@ export default {
   methods: {
     handleDelete(id) {
       this.projects = this.projects.filter((project) => project.id !== id);
+    },
+    handleUpdate(id) {
+      const project = this.projects.find((project) => project.id === id);
+      project.complete = !project.complete;
     },
   },
 };

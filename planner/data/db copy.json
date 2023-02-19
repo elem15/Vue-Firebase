@@ -4,13 +4,13 @@
       "id": 1,
       "title": "Make some Web site",
       "details": "lorem ipsum",
-      "completed": false
+      "complete": false
     },
     {
       "id": 2,
       "title": "Create marketing email",
       "details": "lorem ipsum",
-      "completed": true
+      "complete": true
     }
   ]
 }
