@@ -9,6 +9,9 @@
         />
       </div>
     </div>
+    <div>
+      <router-link :to="{ name: 'ProjectForm' }">Add new task</router-link>
+    </div>
   </div>
 </template>
 

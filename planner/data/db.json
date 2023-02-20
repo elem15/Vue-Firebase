@@ -4,15 +4,49 @@
       "id": 1,
       "title": "Make some Web site",
       "details": "lorem ipsum",
-      "complete": false,
-      "completed": true
+      "complete": false
     },
     {
       "id": 2,
       "title": "Create marketing email",
       "details": "lorem ipsum",
-      "complete": true,
-      "completed": false
+      "complete": false
+    },
+    {
+      "title": "task",
+      "details": "new task",
+      "complete": false,
+      "id": 4
+    },
+    {
+      "title": "Task 2",
+      "details": "Second Task\n",
+      "complete": false,
+      "id": 6
+    },
+    {
+      "title": "Task 3",
+      "details": "Third Task\n",
+      "complete": false,
+      "id": 7
+    },
+    {
+      "title": "Task 3",
+      "details": "Third Task\n",
+      "complete": false,
+      "id": 8
+    },
+    {
+      "title": "task3",
+      "details": "third task",
+      "complete": false,
+      "id": 9
+    },
+    {
+      "title": "Task 4 ",
+      "details": "Fourth Task",
+      "complete": false,
+      "id": 10
     }
   ]
 }
