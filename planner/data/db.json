@@ -3,50 +3,26 @@
     {
       "id": 1,
       "title": "Make some Web site",
-      "details": "lorem ipsum",
-      "complete": false
+      "details": "lorem ipsum 123",
+      "complete": true
     },
     {
       "id": 2,
-      "title": "Create marketing email",
-      "details": "lorem ipsum",
+      "title": "Create Scientific Email",
+      "details": "lorem ipsum 123",
       "complete": false
     },
     {
-      "title": "task",
-      "details": "new task",
-      "complete": false,
-      "id": 4
-    },
-    {
-      "title": "Task 2",
-      "details": "Second Task\n",
-      "complete": false,
-      "id": 6
-    },
-    {
-      "title": "Task 3",
-      "details": "Third Task\n",
-      "complete": false,
-      "id": 7
-    },
-    {
-      "title": "Task 3",
-      "details": "Third Task\n",
-      "complete": false,
+      "title": "Task For All",
+      "details": "Third Task for All projects\n",
+      "complete": true,
       "id": 8
     },
     {
-      "title": "task3",
-      "details": "third task",
-      "complete": false,
+      "title": "New project",
+      "details": "Same interesting\n",
+      "complete": true,
       "id": 9
-    },
-    {
-      "title": "Task 4 ",
-      "details": "Fourth Task",
-      "complete": false,
-      "id": 10
     }
   ]
 }

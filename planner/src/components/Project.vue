@@ -3,7 +3,7 @@
     <div class="actions">
       <h3 @click="detailsView = !detailsView">{{ project.title }}</h3>
       <div class="icons">
-        <span class="material-icons"> edit </span>
+        <span class="material-icons" @click="handleEdit"> edit </span>
         <span class="material-icons" @click="handleDelete"> delete </span>
         <span class="material-icons tick" @click="handleComplete"> done </span>
       </div>
@@ -42,6 +42,12 @@ export default {
       })
         .then(() => this.$emit("patch", this.project.id))
         .catch((err) => console.log(err.message));
+    },
+    handleEdit() {
+      this.$router.push({
+        name: "EditProject",
+        params: { id: this.project.id },
+      });
     },
   },
 };
