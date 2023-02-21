@@ -35,7 +35,7 @@ export default {
     const stopWatchEffect = watchEffect(() => {
       // const newNames = [...filteredNames.value];
       names.value = [...names.value, ...names.value];
-      console.error("watchEffect", filteredNames.value);
+      console.log("watchEffect", filteredNames.value);
     });
     const handleEvent = () => {
       stopWatch();

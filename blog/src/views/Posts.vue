@@ -7,11 +7,17 @@
 </template>
 
 <script>
+import { onMounted, onUnmounted, onUpdated } from "@vue/runtime-core";
 import Post from "./Post.vue";
 export default {
   props: ["posts"],
   components: {
     Post,
+  },
+  setup() {
+    onMounted(() => console.log("mounted"));
+    onUnmounted(() => console.log("unmounted"));
+    onUpdated(() => console.log("updated"));
   },
 };
 </script>

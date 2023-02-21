@@ -1,6 +1,8 @@
 <template>
   <h1>Nested</h1>
-  <Posts :posts="posts" />
+  <button @click="view = !view">Toggle view</button>
+  <button @click="posts.pop()">Delete last post</button>
+  <Posts :posts="posts" v-if="view" />
 </template>
 
 <script>
@@ -23,7 +25,8 @@ export default {
         body: "Lorem ipsum dolor",
       },
     ]);
-    return { posts };
+    const view = ref(true);
+    return { posts, view };
   },
 };
 </script>
