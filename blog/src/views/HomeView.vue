@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <input type="text" v-model="search" />
-    <div v-for="name in filteredNames" :key="name">{{ name }}</div>
+    <div v-for="(name, idx) in filteredNames" :key="idx + name">{{ name }}</div>
     <br />
     <button @click="handleEvent">Stop watching</button>
   </div>
@@ -15,7 +15,15 @@ import { computed, watch, watchEffect } from "@vue/runtime-core";
 export default {
   setup() {
     const search = ref("");
-    const names = ref(["Mario", "Romul", "Teo", "Joi", "Amper"]);
+    const names = ref([
+      "Mario",
+      "Romul",
+      "Teo",
+      "Teod",
+      "Teodor",
+      "Joi",
+      "Amper",
+    ]);
     const filteredNames = computed(() => {
       return names.value.filter((name) =>
         name.toLowerCase().includes(search.value.toLowerCase())
@@ -25,7 +33,9 @@ export default {
       console.log("watch");
     });
     const stopWatchEffect = watchEffect(() => {
-      console.log("watchEffect");
+      // const newNames = [...filteredNames.value];
+      names.value = [...names.value, ...names.value];
+      console.error("watchEffect", filteredNames.value);
     });
     const handleEvent = () => {
       stopWatch();

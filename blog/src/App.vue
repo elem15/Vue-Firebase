@@ -1,5 +1,9 @@
-<template> 
-  <router-view/>
+<template>
+  <nav>
+    <router-link to="/"> Home </router-link>
+    <router-link to="/nested"> Nested </router-link>
+  </nav>
+  <router-view />
 </template>
 
 <style>
@@ -18,6 +22,8 @@ nav {
 nav a {
   font-weight: bold;
   color: #2c3e50;
+  text-decoration: none;
+  margin: 20px;
 }
 
 nav a.router-link-exact-active {
