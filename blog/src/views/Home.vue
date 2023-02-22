@@ -1,11 +1,6 @@
 <template>
   <div class="home">
     <h1>Home</h1>
-    <div class="create">
-      <router-link :to="{ name: 'Create' }">
-        <button>Add new task</button>
-      </router-link>
-    </div>
     <div v-if="err">{{ err }}</div>
     <Posts :posts="posts" v-else-if="posts.length" />
     <div v-else><Spinner /></div>

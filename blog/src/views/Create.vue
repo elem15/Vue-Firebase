@@ -15,9 +15,11 @@
 <script>
 import { ref } from "@vue/reactivity";
 import addPost from "../compositions/addPost";
-import router from "@/router";
+import { useRouter } from "vue-router";
+// import router from "@/router";
 export default {
   setup() {
+    const router = useRouter();
     const title = ref("");
     const body = ref("");
     const tag = ref("");

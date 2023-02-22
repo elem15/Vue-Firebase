@@ -6,7 +6,7 @@ const getPosts = () => {
   const load = async () => {
     try {
       await new Promise((resolve) => {
-        setTimeout(resolve, 1000)
+        setTimeout(resolve, 100)
       })
       const res = await fetch("http://localhost:3000/projects");
       if (!res.ok) {
