@@ -4,29 +4,22 @@
       <h3>{{ post.title }}</h3>
     </router-link>
     <p>{{ trimmedBody }}</p>
-    <span v-for="tag in post.tags" @click="handleRoute(tag)" :key="tag">
-      #{{ tag }}</span
-    >
+    <span v-for="tag in post.tags" :key="tag"> #{{ tag }}</span>
   </div>
 </template>
 
 <script>
 import { computed } from "@vue/runtime-core";
-import { useRouter } from "vue-router";
 export default {
   props: ["post"],
   setup(props) {
-    const router = useRouter();
     const trimmedBody = computed(() => {
       if (props.post.body.length > 100) {
         return props.post.body.substring(0, 100) + "....";
       }
       return props.post.body;
     });
-    const handleRoute = (tag) => {
-      router.push({ name: "Tags", params: { tag } });
-    };
-    return { trimmedBody, handleRoute };
+    return { trimmedBody };
   },
 };
 </script>
