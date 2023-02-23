@@ -7,7 +7,9 @@ const getPost = (id) => {
   const load = async () => {
     try {
       const res = await firebaseProject.collection('posts').doc(id).get()
-      console.log(res.data())
+      if (!res.exists) {
+        throw new Error('no data available ')
+      }
       post.value = { ...res.data(), id }
     } catch (e) {
       err.value = e.message;

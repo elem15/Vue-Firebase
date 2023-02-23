@@ -31,7 +31,7 @@ export default {
   border-bottom: 1px dashed #e7e7e7;
 }
 .post span {
-  color: #42b983;
+  color: #ccc;
 }
 .post h3 {
   display: inline-block;

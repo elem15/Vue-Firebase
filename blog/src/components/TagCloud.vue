@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import getTags from "../compositions/getTags";
+import getTags from "../compositions/createTags";
 export default {
   props: ["posts"],
   setup(props) {
