@@ -8,7 +8,7 @@ const getPosts = () => {
       await new Promise((resolve) => {
         setTimeout(resolve, 100)
       })
-      const res = await fetch("http://localhost:3000/projects");
+      const res = await fetch("http://localhost:3000/posts");
       if (!res.ok) {
         throw new Error("no data available");
       }

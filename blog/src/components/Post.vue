@@ -32,7 +32,6 @@ export default {
 }
 .post span {
   color: #42b983;
-  cursor: pointer;
 }
 .post h3 {
   display: inline-block;

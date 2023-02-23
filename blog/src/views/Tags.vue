@@ -15,7 +15,7 @@ import getPosts from "../compositions/getPosts";
 import Spinner from "../components/Spinner.vue";
 import Posts from "../components/Posts.vue";
 import TagCloud from "../components/TagCloud.vue";
-import { computed } from "@vue/runtime-core";
+import { computed, ref } from "@vue/runtime-core";
 import { useRoute } from "vue-router";
 export default {
   components: { Posts, Spinner, TagCloud },
@@ -23,10 +23,11 @@ export default {
     const route = useRoute();
     const { posts, err, load } = getPosts();
     load();
-    const tag = route.params.tag;
-    const tagPosts = computed(() =>
-      posts.value.filter((post) => post.tags.includes(tag))
-    );
+    const tag = ref(null);
+    const tagPosts = computed(() => {
+      tag.value = route.params.tag;
+      return posts.value.filter((post) => post.tags.includes(tag.value));
+    });
     return { tagPosts, err, posts };
   },
 };

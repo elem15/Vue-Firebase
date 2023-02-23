@@ -4,7 +4,7 @@ const addPost = () => {
   const err = ref(null)
   const load = async (data) => {
     try {
-      const res = await fetch("http://localhost:3000/projects/", {
+      const res = await fetch("http://localhost:3000/posts/", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
