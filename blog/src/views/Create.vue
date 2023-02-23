@@ -16,6 +16,8 @@
 import { ref } from "@vue/reactivity";
 import addPost from "../compositions/addPost";
 import { useRouter } from "vue-router";
+import { timeStamp } from "../firebase/config";
+
 // import router from "@/router";
 export default {
   setup() {
@@ -33,7 +35,12 @@ export default {
     };
     const { err, load } = addPost();
     const handleSubmit = async () => {
-      const data = { title: title.value, body: body.value, tags: tags.value };
+      const data = {
+        title: title.value,
+        body: body.value,
+        tags: tags.value,
+        createdAt: timeStamp(),
+      };
       await load(data);
       if (!err.value) {
         router.push({ name: "Home" });

@@ -13,5 +13,6 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig)
 
 const firebaseProject = firebase.firestore()
+const timeStamp = firebase.firestore.FieldValue.serverTimestamp
 
-export { firebaseProject }
+export { firebaseProject, timeStamp }
