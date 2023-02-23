@@ -1,8 +1,11 @@
 <template>
   <div v-if="err">{{ err }}</div>
   <div v-else-if="post" class="post">
-    <h3>{{ post.title }}</h3>
+    <div>
+      <h3>{{ post.title }}</h3>
+    </div>
     <p>{{ post.body }}</p>
+    <span v-for="tag in post.tags" :key="tag"> #{{ tag }}</span>
   </div>
   <div v-else><Spinner /></div>
 </template>
@@ -10,15 +13,13 @@
 <script>
 import getPost from "../compositions/getPost";
 import Spinner from "../components/Spinner.vue";
-import { useRoute } from "vue-router";
 export default {
   components: {
     Spinner,
   },
   props: ["id"],
-  setup() {
-    const route = useRoute();
-    const { post, err, load } = getPost(route.params.id);
+  setup(props) {
+    const { post, err, load } = getPost(props.id);
     load();
     return { post, err };
   },

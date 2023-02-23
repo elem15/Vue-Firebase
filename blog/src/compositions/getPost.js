@@ -1,19 +1,14 @@
 import { ref } from "@vue/reactivity"
+import { firebaseProject } from '../firebase/config'
 
 const getPost = (id) => {
   const post = ref(null)
   const err = ref(null)
   const load = async () => {
     try {
-      await new Promise((resolve) => {
-        setTimeout(resolve, 100)
-      })
-      const res = await fetch("http://localhost:3000/posts/" + id);
-      if (!res.ok) {
-        throw new Error("no data available");
-      }
-      const data = await res.json();
-      post.value = data;
+      const res = await firebaseProject.collection('posts').doc(id).get()
+      console.log(res.data())
+      post.value = { ...res.data(), id }
     } catch (e) {
       err.value = e.message;
       console.log(err.value)
