@@ -6,13 +6,15 @@ const getPosts = () => {
   const err = ref(null)
   const load = async () => {
     try {
-      const res = await firebaseProject.collection('posts').orderBy('createdAt', 'desc').get()
-      if (res.empty) {
-        throw new Error('no data available ')
-      }
-      posts.value = res.docs.map(doc => ({
-        ...doc.data(), id: doc.id
-      }))
+      await firebaseProject.collection('posts').orderBy('createdAt', 'desc').onSnapshot(snap => {
+        posts.value = snap.docs.map(doc => ({ ...doc.data(), id: doc.id }))
+      })
+      // if (res.empty) {
+      //   throw new Error('no data available ')
+      // }
+      // posts.value = res.docs.map(doc => ({
+      //   ...doc.data(), id: doc.id
+      // }))
       // .sort((post1, post2) => post1.createdAt - post2.createdAt)
     } catch (e) {
       if (!e.message) {
