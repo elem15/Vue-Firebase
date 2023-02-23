@@ -1,0 +1,32 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "title": "Create new homepage banner",
+      "body": "Lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsumlorem ipsum lorem ipsum lorem ipsum.",
+      "tags": [
+        "css",
+        "webdev",
+        "coding"
+      ]
+    },
+    {
+      "id": 2,
+      "title": "Make marketing email",
+      "body": "Lorem ipsum",
+      "tags": [
+        "css",
+        "webdev",
+        "coding"
+      ]
+    },
+    {
+      "title": "New task",
+      "body": "Details of task",
+      "tags": [
+        "css"
+      ],
+      "id": 3
+    }
+  ]
+}

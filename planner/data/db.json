@@ -1,0 +1,28 @@
+{
+  "projects": [
+    {
+      "id": 1,
+      "title": "Make some Web site",
+      "details": "lorem ipsum 123",
+      "complete": true
+    },
+    {
+      "id": 2,
+      "title": "Create Scientific Email",
+      "details": "lorem ipsum 123",
+      "complete": false
+    },
+    {
+      "title": "Task For All",
+      "details": "Third Task for All projects\n",
+      "complete": true,
+      "id": 8
+    },
+    {
+      "title": "New project",
+      "details": "Same interesting\n",
+      "complete": true,
+      "id": 9
+    }
+  ]
+}
