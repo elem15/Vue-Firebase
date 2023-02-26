@@ -16,13 +16,15 @@
 import { ref } from "vue";
 import useLogin from "@/compositions/login";
 export default {
-  setup() {
+  setup(props, context) {
     const { err, login } = useLogin();
     const email = ref("");
     const password = ref("");
     const handleSubmit = async () => {
       const user = await login(email.value, password.value);
-      console.log(user);
+      if (!err.value) {
+        context.emit("enterChat", user);
+      }
     };
     return { email, password, handleSubmit, err };
   },

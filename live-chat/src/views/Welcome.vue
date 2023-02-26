@@ -2,14 +2,14 @@
   <div class="welcome container">
     <div v-if="loggedIn">
       <h3>Login</h3>
-      <SignIn />
+      <SignIn @enterChat="enterChat" />
       <div>
         Not account yet? <span @click="loggedIn = !loggedIn">Sign Up</span>!
       </div>
     </div>
     <div v-else>
       <h3>Sign Up</h3>
-      <SignUp />
+      <SignUp @enterChat="enterChat" />
       <div>
         Already registered? <span @click="loggedIn = !loggedIn">Login</span>!
       </div>
@@ -21,14 +21,20 @@
 import SignUp from "../components/SignUp.vue";
 import SignIn from "../components/SignIn.vue";
 import { ref } from "vue";
+import { useRouter } from "vue-router";
 export default {
   components: {
     SignUp,
     SignIn,
   },
   setup() {
-    const loggedIn = ref(false);
-    return { loggedIn };
+    const router = useRouter();
+    const loggedIn = ref(true);
+
+    const enterChat = () => {
+      router.push({ name: "Chatroom" });
+    };
+    return { loggedIn, enterChat };
   },
 };
 </script>

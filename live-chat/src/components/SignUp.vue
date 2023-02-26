@@ -23,7 +23,7 @@
 import { ref } from "vue";
 import useSignup from "@/compositions/signup";
 export default {
-  setup() {
+  setup(props, context) {
     const { err, signup } = useSignup();
     const displayName = ref("");
     const email = ref("");
@@ -31,7 +31,7 @@ export default {
     const handleSubmit = async () => {
       await signup(email.value, password.value, displayName.value);
       if (!err.value) {
-        console.log("user signed up");
+        context.emit("enterChat");
       }
     };
     return { displayName, email, password, handleSubmit, err };
