@@ -1,13 +1,13 @@
 <template>
   <h1>Reaction Timer</h1>
   <button @click="start" :disabled="isPlaying">Start</button>
-  <Block v-if="isPlaying" v-bind:delay="delay" @reaction="endGame"/>
-  <Results v-if="showResult" v-bind:score="score"/>
+  <Block v-if="isPlaying" v-bind:delay="delay" @reaction="endGame" />
+  <Results v-if="showResult" v-bind:score="score" />
 </template>
 
 <script>
 import Block from "./components/Block.vue";
-import Results from "./components/Results.vue"
+import Results from "./components/Results.vue";
 export default {
   name: "App",
   components: {
@@ -26,13 +26,13 @@ export default {
     start() {
       this.delay = 1000 + Math.random() * 3000;
       this.isPlaying = true;
-      this.showResult = false;      
+      this.showResult = false;
     },
     endGame(time) {
       this.score = time;
       this.isPlaying = false;
-      this.showResult = true;      
-    }
+      this.showResult = true;
+    },
   },
 };
 </script>
