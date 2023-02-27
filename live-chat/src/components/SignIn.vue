@@ -8,7 +8,7 @@
     />
     <input type="password" autocomplete="current-password" v-model="password" />
     <div class="error">{{ err }}</div>
-    <button>SignUp</button>
+    <button>Login</button>
   </form>
 </template>
 
