@@ -9,8 +9,8 @@
 </template>
 
 <script>
-import getUser from "@/compositions/getUser";
-import useLogout from "../compositions/logout";
+import getUser from "@/composables/getUser";
+import useLogout from "../composables/logout";
 
 export default {
   setup() {

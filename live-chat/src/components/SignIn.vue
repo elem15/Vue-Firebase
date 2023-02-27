@@ -14,7 +14,7 @@
 
 <script>
 import { ref } from "vue";
-import useLogin from "@/compositions/login";
+import useLogin from "@/composables/login";
 export default {
   setup(props, context) {
     const { err, login } = useLogin();
