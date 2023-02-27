@@ -1,6 +1,7 @@
 <template>
   <div class="chat-window">
-    <div v-if="formatDocuments.length" class="messages">
+    <div v-if="formatDocuments.length" class="messages" ref="messagesRef">
+      <input type="text" value="theme" />
       <div v-for="doc in formatDocuments" :key="doc.id" class="single">
         <span class="created-at">{{ doc.createdAt }}</span>
         <span class="name">{{ doc.user }}</span>
@@ -14,9 +15,10 @@
 <script>
 import getCollection from "../composables/getCollection";
 import { formatDistanceToNow } from "date-fns";
-import { computed } from "vue";
+import { computed, onMounted, onUpdated, ref } from "vue";
 export default {
   setup() {
+    const messagesRef = ref(null);
     const { documents, error } = getCollection("messages");
     const formatDocuments = computed(() => {
       if (documents.value) {
@@ -26,7 +28,14 @@ export default {
         });
       }
     });
-    return { error, documents, formatDocuments };
+    onUpdated(() => {
+      messagesRef.value.scroll({
+        top: messagesRef.value.scrollHeight,
+        behavior: "smooth",
+      });
+      // messagesRef.value.scrollTop = messagesRef.value.scrollHeight;
+    });
+    return { error, formatDocuments, messagesRef };
   },
 };
 </script>

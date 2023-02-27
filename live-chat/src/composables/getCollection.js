@@ -5,7 +5,7 @@ const getCollection = (collection) => {
   const error = ref(null)
   const documents = ref([])
 
-  const collectionRef = app.collection(collection).orderBy('createdAt', 'desc')
+  const collectionRef = app.collection(collection).orderBy('createdAt')
   collectionRef.onSnapshot((snap) => {
     const docs = []
     snap.docs.forEach(doc => {

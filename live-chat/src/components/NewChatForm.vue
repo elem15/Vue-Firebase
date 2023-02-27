@@ -3,6 +3,7 @@
     <textarea
       placeholder="Type message and press enter to send"
       v-model="message"
+      required
     ></textarea>
     <div class="error">{{ error }}</div>
   </form>
@@ -19,8 +20,10 @@ export default {
     const { user } = getUser();
     const { error, addDoc } = useCollection("messages");
     const handleSubmit = async () => {
+      const mes = message.value.trim();
+      if (!mes) return;
       const body = {
-        message: message.value,
+        message: mes,
         user: user.value.displayName,
         createdAt: timestamp(),
       };
