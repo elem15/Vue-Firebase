@@ -1,4 +1,4 @@
-import { app } from '@/Firebase/config'
+import { app } from '../Firebase/config'
 import { ref, watchEffect } from 'vue'
 
 const getCollection = (collection) => {
@@ -13,7 +13,6 @@ const getCollection = (collection) => {
     })
     documents.value = docs
     error.value = null
-    console.log('onSnap')
   }, (e) => {
     console.log(e.message)
     error.value = 'could not fetch data'

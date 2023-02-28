@@ -7,11 +7,11 @@
 </template>
 
 <script>
-import NavBar from "@/components/NavBar.vue";
-import Messages from "@/components/Messages.vue";
-import NewChatForm from "@/components/NewChatForm.vue";
+import NavBar from "../components/NavBar.vue";
+import Messages from "../components/Messages.vue";
+import NewChatForm from "../components/NewChatForm.vue";
 import { useRouter } from "vue-router";
-import getUser from "@/composables/getUser";
+import getUser from "../composables/getUser";
 import { watch } from "vue";
 export default {
   components: {

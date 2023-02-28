@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Welcome from '../views/Welcome.vue'
 import Chatroom from '../views/Chatroom.vue'
-import { auth } from '@/Firebase/config'
+import { auth } from '../Firebase/config'
 
 const requireAuth = (to, from, next) => {
   const user = auth.currentUser

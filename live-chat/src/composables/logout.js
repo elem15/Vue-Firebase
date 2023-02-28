@@ -1,4 +1,4 @@
-import { auth } from '@/Firebase/config';
+import { auth } from '../Firebase/config';
 import { ref } from 'vue';
 
 const err = ref(null)

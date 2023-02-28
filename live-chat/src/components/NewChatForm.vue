@@ -10,9 +10,9 @@
 </template>
 
 <script>
-import getUser from "@/composables/getUser";
-import useCollection from "@/composables/useCollection";
-import { timestamp } from "@/Firebase/config";
+import getUser from "../composables/getUser";
+import useCollection from "../composables/useCollection";
+import { timestamp } from "../Firebase/config";
 import { ref } from "vue";
 export default {
   setup() {

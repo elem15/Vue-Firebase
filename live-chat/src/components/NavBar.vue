@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import getUser from "@/composables/getUser";
+import getUser from "../composables/getUser";
 import useLogout from "../composables/logout";
 
 export default {

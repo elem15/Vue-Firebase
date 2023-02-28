@@ -1,4 +1,4 @@
-import { app } from '@/Firebase/config'
+import { app } from '../Firebase/config'
 import { ref } from 'vue'
 
 const useCollection = (collection) => {
