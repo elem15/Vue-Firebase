@@ -16,6 +16,7 @@ const getCollection = (collection) => {
   }, (e) => {
     console.log(e.message)
     error.value = 'could not fetch data'
+    console.log(error.value)
     documents.value = []
   })
   watchEffect((onInvalidate) => {

@@ -8,8 +8,8 @@
         <span class="message">{{ doc.message }}</span>
       </div>
     </div>
-    <div v-else-if="error" class="error">{{ error }}</div>
     <div v-else><Spinner /></div>
+    <div v-if="error" class="error">{{ error }}</div>
   </div>
 </template>
 
