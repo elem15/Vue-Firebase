@@ -8,7 +8,8 @@
         <span class="message">{{ doc.message }}</span>
       </div>
     </div>
-    <div class="error">{{ error }}</div>
+    <div v-else-if="error" class="error">{{ error }}</div>
+    <div v-else><Spinner /></div>
   </div>
 </template>
 
@@ -16,7 +17,11 @@
 import getCollection from "../composables/getCollection";
 import { formatDistanceToNow } from "date-fns";
 import { computed, onMounted, onUpdated, ref } from "vue";
+import Spinner from "../components/Spinner.vue";
 export default {
+  components: {
+    Spinner,
+  },
   setup() {
     const messagesRef = ref(null);
     const { documents, error } = getCollection("messages");
