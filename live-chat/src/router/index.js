@@ -11,11 +11,20 @@ const requireAuth = (to, from, next) => {
     next()
   }
 }
+const protectWelcome = (to, from, next) => {
+  const user = auth.currentUser
+  if (user) {
+    next({ name: 'Chatroom' })
+  } else {
+    next()
+  }
+}
 const routes = [
   {
     path: '/',
     name: 'Welcome',
-    component: Welcome
+    component: Welcome,
+    beforeEnter: protectWelcome
   },
   {
     path: '/chatroom',
