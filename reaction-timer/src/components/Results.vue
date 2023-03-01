@@ -1,25 +1,30 @@
 <template>
-  <p>Your result is: {{score}} ms</p>
-  <div class="rank">{{rank}}</div>
+  <p>Your result is: {{ score }} ms</p>
+  <div class="rank">{{ rank }}</div>
 </template>
 
 <script>
 export default {
-  props: ['score'],
+  props: ["score"],
   data() {
     return {
-      rank: ''
-    }
+      rank: "",
+    };
   },
-  mounted() { 
-    this.rank = this.score < 320 ? 'Super speed!' : this.score < 450 ? 'Normal speed.' : 'Too slowly...';
-  }
-}
+  mounted() {
+    this.rank =
+      this.score < 320
+        ? "Super speed!"
+        : this.score < 450
+        ? "Normal speed."
+        : "Too slowly...";
+  },
+};
 </script>
 
 <style>
-  .rank {
-    font-size: 1.4em;
-    color: green;
-  }
+.rank {
+  font-size: 1.4em;
+  color: green;
+}
 </style>

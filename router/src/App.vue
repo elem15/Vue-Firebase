@@ -14,7 +14,7 @@
 export default {
   methods: {
     redirect() {
-      this.$router.push({ name: "About" });
+      this.$router.push({ name: "Home" });
     },
     back() {
       this.$router.go(-1);
@@ -57,5 +57,6 @@ button {
   color: rgb(8, 144, 149);
   border-radius: 4px;
   border: none;
+  cursor: pointer;
 }
 </style>
