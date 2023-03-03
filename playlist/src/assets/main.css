@@ -26,7 +26,7 @@ button,
   background: var(--secondary);
   border-radius: 8px;
   border: 0;
-  padding: 8px, 12px;
+  padding: 8px 12px;
   font-weight: 600;
   cursor: pointer;
   display: inline-block;
@@ -46,7 +46,7 @@ button:disabled {
 }
 
 form {
-  min-width: 400px;
+  max-width: 400px;
   margin: 0 auto;
   padding: 30px;
   border-radius: 8px;
