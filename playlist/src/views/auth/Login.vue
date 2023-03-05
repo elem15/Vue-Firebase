@@ -21,9 +21,11 @@
 <script>
 import { onMounted, ref } from "vue";
 import useLogin from "@/composables/useLogin";
+import { useRouter } from 'vue-router';
 export default {
   setup() {
     const { error, login, isPending } = useLogin();
+    const router = useRouter()
     onMounted(() => {
       error.value = null;
     });
@@ -33,6 +35,7 @@ export default {
       await login(email.value, password.value);
       if (!error.value) {
         console.log("User is logged");
+        router.push({name: 'Home'})
       }
     };
     return { error, isPending, email, password, handleSubmit };

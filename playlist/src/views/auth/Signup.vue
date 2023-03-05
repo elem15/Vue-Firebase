@@ -27,7 +27,8 @@
 <script setup>
 import { onMounted, ref } from "vue";
 import useSignup from "@/composables/useSignup";
-
+import { useRouter } from "vue-router";
+const router = useRouter();
 const { error, signup, isPending } = useSignup();
 onMounted(() => {
   error.value = null;
@@ -39,6 +40,7 @@ const handleSubmit = async () => {
   await signup(email.value, password.value, displayName.value);
   if (!error.value) {
     console.log("User is logged");
+    router.push({ name: "Home" });
   }
 };
 </script>

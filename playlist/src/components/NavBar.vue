@@ -4,6 +4,9 @@
       <h1><router-link :to="{ name: 'Home' }">Music</router-link></h1>
       <div class="links">
         <div v-if="user">
+          <router-link :to="{ name: 'CreatePlaylist' }"
+            >Create playlist</router-link
+          >
           <button @click="handleLogout" v-if="!isPending">Log out</button>
           <button v-else disabled>Waiting</button>
         </div>

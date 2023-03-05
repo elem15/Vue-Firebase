@@ -1,15 +1,16 @@
 <template>
-  <div class="home">Welcome</div>
-  <CreateMessage />
+  <div class="home">
+    <ListView />
+  </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import CreateMessage from "@/components/CreateMessage.vue";
+import ListView from "@/components/ListView.vue";
 export default {
   name: "HomeView",
   components: {
-    CreateMessage,
+    ListView,
   },
 };
 </script>

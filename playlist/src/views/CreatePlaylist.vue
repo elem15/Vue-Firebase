@@ -16,6 +16,7 @@ import useStorage from "@/composables/useStorage";
 import useCollection from "@/composables/useCollection";
 import getUser from "@/composables/getUser";
 import { timestamp } from "@/Firebase/config";
+import { useRouter } from "vue-router";
 
 const title = ref("");
 const description = ref("");
@@ -27,12 +28,12 @@ const types = ["image/jpeg", "image/png"];
 const { storageError, filePath, url, uploadImage } = useStorage();
 const { error, addDoc } = useCollection("playlists");
 const { user } = getUser();
-
+const router = useRouter();
 const handleSubmit = async () => {
   if (imageFile.value) {
     isPending.value = true;
     await uploadImage(imageFile.value);
-    await addDoc({
+    const res = await addDoc({
       title: title.value,
       description: description.value,
       userId: user.value.uid,
@@ -43,6 +44,7 @@ const handleSubmit = async () => {
       createdAt: timestamp(),
     });
     isPending.value = false;
+    router.push({ name: "PlaylistDetails", params: { id: res.id } });
   } else {
     fileError.value = "You need add a playlist cover";
   }

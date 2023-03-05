@@ -3,7 +3,7 @@ import { ref, watchEffect } from 'vue'
 
 const getCollection = (collection) => {
   const error = ref(null)
-  const documents = ref([])
+  const documents = ref(null)
 
   const collectionRef = projectFirestore.collection(collection).orderBy('createdAt')
   const unsubscribe = collectionRef.onSnapshot((snap) => {
@@ -16,8 +16,7 @@ const getCollection = (collection) => {
   }, (e) => {
     console.log(e.message)
     error.value = 'could not fetch data'
-    console.log(error.value)
-    documents.value = []
+    documents.value = null
   })
   watchEffect((onInvalidate) => {
     // unsubscribe from prev collection when watcher is stopped (component unmounted)

@@ -8,9 +8,10 @@ const useCollection = (collection) => {
   const addDoc = async (message) => {
     isPending.value = true
     try {
-      await projectFirestore.collection(collection).add(message)
+      const res = await projectFirestore.collection(collection).add(message)
       isPending.value = false
       error.value = null
+      return res;
     } catch (e) {
       error.value = e.message
       isPending.value = false
