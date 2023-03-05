@@ -4,22 +4,45 @@
     <textarea placeholder="description" v-model="description"></textarea>
     <label>Add playlist cover</label>
     <input type="file" @change="fileChange" />
-    <div class="error">{{ fileError }}</div>
-    <button>Send playlist</button>
+    <button v-if="isPending" disabled>Saving</button>
+    <button v-else>Send</button>
+    <div class="error">{{ fileError || storageError || error }}</div>
   </form>
 </template>
 
 <script setup>
 import { ref } from "vue";
+import useStorage from "@/composables/useStorage";
+import useCollection from "@/composables/useCollection";
+import getUser from "@/composables/getUser";
+import { timestamp } from "@/Firebase/config";
 
 const title = ref("");
 const description = ref("");
 const imageFile = ref(null);
 const fileError = ref("");
+const isPending = ref(false);
 const types = ["image/jpeg", "image/png"];
-const handleSubmit = () => {
+
+const { storageError, filePath, url, uploadImage } = useStorage();
+const { error, addDoc } = useCollection("playlists");
+const { user } = getUser();
+
+const handleSubmit = async () => {
   if (imageFile.value) {
-    console.log(title.value, description.value, imageFile.value);
+    isPending.value = true;
+    await uploadImage(imageFile.value);
+    await addDoc({
+      title: title.value,
+      description: description.value,
+      userId: user.value.uid,
+      userName: user.value.displayName,
+      coverUrl: url.value,
+      filePath: filePath.value,
+      songs: [],
+      createdAt: timestamp(),
+    });
+    isPending.value = false;
   } else {
     fileError.value = "You need add a playlist cover";
   }
