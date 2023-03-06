@@ -18,7 +18,7 @@
       autocomplete="current-password"
       v-model="password"
     />
-    <button v-if="!isPending">Log In</button>
+    <button v-if="!isPending">Sign Up</button>
     <button v-else disabled>Load</button>
   </form>
   <div class="error">{{ error }}</div>

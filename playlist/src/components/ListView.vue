@@ -11,7 +11,7 @@
 import getCollection from "@/composables/getCollection";
 import ListItem from "./ListItem.vue";
 
-import { computed, onMounted } from "vue";
+import { computed } from "vue";
 
 const { error, documents } = getCollection("playlists");
 const formatDocuments = computed(() => {
@@ -20,11 +20,6 @@ const formatDocuments = computed(() => {
       const date = doc.createdAt.toDate();
       return { ...doc, createdAt: date };
     });
-  }
-});
-onMounted(() => {
-  if (!error.value) {
-    console.log(formatDocuments);
   }
 });
 </script>

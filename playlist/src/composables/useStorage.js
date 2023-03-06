@@ -19,7 +19,17 @@ const useStorage = () => {
       console.log(storageError.value)
     }
   }
-  return { storageError, filePath, url, uploadImage }
+  const deleteImage = async (path) => {
+    const storageRef = projectStorage.ref(path)
+    try {
+      await storageRef.delete()
+      error.value = ''
+    } catch (e) {
+      storageError.value = e.message === 'error is not defined' ? '' : e.message
+      console.log(storageError.value)
+    }
+  }
+  return { storageError, filePath, url, uploadImage, deleteImage }
 }
 
 export default useStorage
