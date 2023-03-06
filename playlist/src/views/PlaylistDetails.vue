@@ -25,7 +25,6 @@ import useDocument from "@/composables/useDocument";
 import getUser from "@/composables/getUser";
 import useStorage from "@/composables/useStorage";
 import { useRouter } from "vue-router";
-import { is } from "@babel/types";
 
 export default {
   props: ["id"],
@@ -46,8 +45,8 @@ export default {
     });
     const handleDelete = async () => {
       isPending.value = true;
-      await deleteImage(playlist.value.filePath);
       await deletePlaylist();
+      await deleteImage(playlist.value.filePath);
       isPending.value = false;
       if (!documentError.value) router.push({ name: "Home" });
     };
