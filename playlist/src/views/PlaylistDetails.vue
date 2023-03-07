@@ -8,12 +8,14 @@
       <p class="description">{{ playlist.description }}</p>
       <p class="username">Created by: {{ playlist.userName }}</p>
       <p>Created at: {{ playlist.createdAt }}</p>
-      <div>
+      <div v-if="ownership">
         <button v-if="!isPending" @click="handleDelete">Delete</button>
         <button v-else disabled>Processing</button>
       </div>
     </div>
-    <div class="song-list">song-list here</div>
+    <div class="song-list">
+      <AddSong :id="id" />
+    </div>
   </div>
   <div class="error">{{ error || documentError }}</div>
 </template>
@@ -25,19 +27,21 @@ import useDocument from "@/composables/useDocument";
 import getUser from "@/composables/getUser";
 import useStorage from "@/composables/useStorage";
 import { useRouter } from "vue-router";
+import AddSong from "@/components/AddSong.vue";
 
 export default {
   props: ["id"],
+  components: {
+    AddSong,
+  },
   setup(props) {
+    const id = props.id;
     const { deleteImage } = useStorage();
-    const { error, document: playlist } = getDocument("playlists", props.id);
+    const { error, document: playlist } = getDocument("playlists", id);
     const { user } = getUser();
     const router = useRouter();
     const isPending = ref(false);
-    const { deletePlaylist, documentError } = useDocument(
-      "playlists",
-      props.id
-    );
+    const { deletePlaylist, documentError } = useDocument("playlists", id);
     const ownership = computed(() => {
       return (
         playlist.value && user.value && playlist.value.userId === user.value.uid
@@ -57,6 +61,7 @@ export default {
       handleDelete,
       documentError,
       isPending,
+      id,
     };
   },
 };

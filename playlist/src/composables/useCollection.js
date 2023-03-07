@@ -18,6 +18,7 @@ const useCollection = (collection) => {
       console.log(error)
     }
   }
+
   return { error, addDoc, isPending }
 }
 export default useCollection
