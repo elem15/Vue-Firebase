@@ -13,23 +13,24 @@
 import { ref } from "vue";
 import useDocument from "@/composables/useDocument";
 export default {
-  props: ["id"],
+  props: ["playlist"],
   setup(props) {
-    const docId = props.id;
     const title = ref("");
     const artist = ref("");
     const isForm = ref(false);
-    const { updatePlaylist } = useDocument("playlists", docId);
+    const { updatePlaylist } = useDocument("playlists", props.playlist.id);
     const handleSubmit = async () => {
       const song = {
         title: title.value,
         artist: artist.value,
         songId: Math.floor(Math.random() * 1000000),
       };
+      await updatePlaylist({
+        songs: [...props.playlist.songs, song],
+      });
       title.value = "";
       artist.value = "";
       isForm.value = false;
-      await updatePlaylist(song);
     };
     return { title, artist, isForm, handleSubmit };
   },

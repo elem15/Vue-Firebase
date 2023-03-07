@@ -14,7 +14,7 @@
       </div>
     </div>
     <div class="song-list">
-      <AddSong :id="id" />
+      <AddSong v-if="ownership" :playlist="playlist" />
     </div>
   </div>
   <div class="error">{{ error || documentError }}</div>

@@ -17,17 +17,10 @@ const useDocument = (collection, id) => {
       console.log(e.message);
     }
   };
-  const updatePlaylist = async (song) => {
+  const updatePlaylist = async (songs) => {
     isPending.value = true
     try {
-      const doc = await refDoc.get()
-      const data = doc.data()
-      const { songs } = data
-      songs.push(song)
-      console.log(songs)
-      await refDoc.update({
-        ...data, songs
-      })
+      await refDoc.update(songs)
       isPending.value = false
       error.value = null
     } catch (e) {
