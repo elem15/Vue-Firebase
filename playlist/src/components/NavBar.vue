@@ -7,6 +7,9 @@
           <router-link :to="{ name: 'CreatePlaylist' }"
             >Create playlist</router-link
           >
+          <router-link :to="{ name: 'UserPlaylist' }"
+            >User playlist</router-link
+          >
           <button @click="handleLogout" v-if="!isPending">Log out</button>
           <button v-else disabled>Waiting</button>
         </div>
@@ -58,6 +61,9 @@ nav {
 }
 button,
 .btn {
+  margin-left: 10px;
+}
+a {
   margin-left: 10px;
 }
 </style>

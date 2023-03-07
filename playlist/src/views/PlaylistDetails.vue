@@ -14,6 +14,16 @@
       </div>
     </div>
     <div class="song-list">
+      <div v-if="!playlist.songs.length">No songs</div>
+      <ul v-else>
+        <li v-for="song in playlist.songs" :key="song.id" class="details">
+          <div>
+            <h4>{{ song.title }}</h4>
+            <p>{{ song.artist }}</p>
+          </div>
+          <button v-if="ownership" @click="deleteSong(song.id)">delete</button>
+        </li>
+      </ul>
       <AddSong v-if="ownership" :playlist="playlist" />
     </div>
   </div>
@@ -41,7 +51,10 @@ export default {
     const { user } = getUser();
     const router = useRouter();
     const isPending = ref(false);
-    const { deletePlaylist, documentError } = useDocument("playlists", id);
+    const { deletePlaylist, documentError, updatePlaylist } = useDocument(
+      "playlists",
+      id
+    );
     const ownership = computed(() => {
       return (
         playlist.value && user.value && playlist.value.userId === user.value.uid
@@ -54,11 +67,16 @@ export default {
       isPending.value = false;
       if (!documentError.value) router.push({ name: "Home" });
     };
+    const deleteSong = async (id) => {
+      const songs = playlist.value.songs.filter((song) => song.id !== id);
+      await updatePlaylist({ songs });
+    };
     return {
       error,
       playlist,
       ownership,
       handleDelete,
+      deleteSong,
       documentError,
       isPending,
       id,
@@ -105,5 +123,23 @@ export default {
 }
 .description {
   text-align: left;
+}
+.song-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin-top: 20px;
+}
+button,
+.btn {
+  margin-top: 0;
+}
+.details {
+  padding: 10px 0;
+  margin-bottom: 20px;
+  margin-right: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px dashed var(--secondary);
 }
 </style>

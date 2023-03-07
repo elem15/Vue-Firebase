@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import CreatePlaylist from '../views/CreatePlaylist.vue'
 import PlaylistDetails from '../views/PlaylistDetails.vue'
+import UserPlaylist from '../views/UserPlaylist.vue'
 import NotFound from '../views/NotFound.vue'
 import Login from '../views/auth/Login'
 import Signup from '../views/auth/Signup'
@@ -42,6 +43,13 @@ const routes = [
     path: '/playlists/:id',
     name: 'PlaylistDetails',
     component: PlaylistDetails,
+    props: true,
+    beforeEnter: requireAuth
+  },
+  {
+    path: '/playlists/user',
+    name: 'UserPlaylist',
+    component: UserPlaylist,
     props: true,
     beforeEnter: requireAuth
   },

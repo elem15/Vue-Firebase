@@ -40,7 +40,7 @@ const handleSubmit = async () => {
   await signup(email.value, password.value, displayName.value);
   if (!error.value) {
     console.log("User is logged");
-    router.push({ name: "Home" });
+    router.push({ name: "UserPlaylist" });
   }
 };
 </script>
