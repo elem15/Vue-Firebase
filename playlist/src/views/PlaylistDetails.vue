@@ -8,7 +8,7 @@
       <p class="description">{{ playlist.description }}</p>
       <p class="username">Created by: {{ playlist.userName }}</p>
       <p>Created at: {{ playlist.createdAt }}</p>
-      <div v-if="ownership">
+      <div>
         <button v-if="!isPending" @click="handleDelete">Delete</button>
         <button v-else disabled>Processing</button>
       </div>
