@@ -11,7 +11,7 @@
         <p>Created by: {{ doc.userName }}</p>
       </div>
       <div class="song-number">
-        <p>{{ doc.songs.length }}</p>
+        <p>{{ doc.songs.length || 0 }}</p>
       </div>
     </div>
   </router-link>

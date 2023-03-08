@@ -7,21 +7,14 @@
   </div>
 </template>
 
-<script setup>
-import getCollection from "@/composables/getCollection";
-import ListItem from "./ListItem.vue";
-
-import { computed } from "vue";
-
-const { error, documents } = getCollection("playlists");
-const formatDocuments = computed(() => {
-  if (documents.value) {
-    return documents.value.map((doc) => {
-      const date = doc.createdAt.toDate();
-      return { ...doc, createdAt: date };
-    });
-  }
-});
+<script>
+import ListItem from "@/components/ListItem.vue";
+export default {
+  props: ["error", "formatDocuments"],
+  components: {
+    ListItem,
+  },
+};
 </script>
 
 <style>

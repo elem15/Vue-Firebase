@@ -10,6 +10,7 @@
           <router-link :to="{ name: 'UserPlaylist' }"
             >User playlist</router-link
           >
+          <span class="name">Hi here, {{ user.displayName }}!</span>
           <button @click="handleLogout" v-if="!isPending">Log out</button>
           <button v-else disabled>Waiting</button>
         </div>
@@ -42,7 +43,7 @@ const handleLogout = async () => {
 <style scoped>
 .navbar {
   margin: 20px 0;
-  padding: 10px 20px 20px;
+  padding: 20px 20px;
   background: #fff;
   border-radius: 8px;
   box-shadow: 1px 2px 3px rgba(50, 50, 50, 0.05);
@@ -65,5 +66,11 @@ button,
 }
 a {
   margin-left: 10px;
+}
+.name {
+  display: inline-block;
+  margin-left: 20px;
+  padding-left: 20px;
+  border-left: 2px solid var(--secondary);
 }
 </style>

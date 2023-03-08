@@ -1,11 +1,13 @@
 import { projectFirestore } from '../Firebase/config'
 import { ref, watchEffect } from 'vue'
 
-const getCollection = (collection) => {
+const getCollection = (collection, query = null) => {
   const error = ref(null)
   const documents = ref(null)
-
-  const collectionRef = projectFirestore.collection(collection).orderBy('createdAt')
+  let collectionRef = projectFirestore.collection(collection).orderBy('createdAt')
+  if (query) {
+    collectionRef = collectionRef.where(...query)
+  }
   const unsubscribe = collectionRef.onSnapshot((snap) => {
     const docs = []
     snap.docs.forEach(doc => {
