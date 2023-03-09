@@ -1,4 +1,4 @@
-import { projectStorage } from '@/Firebase/config'
+import { projectStorage, projectFirestore } from '@/Firebase/config'
 import { ref } from 'vue'
 import getUser from './getUser'
 
@@ -14,6 +14,7 @@ const useStorage = () => {
     //if file name exist - don't rewriting and return old url
     try {
       url.value = await storageRef.getDownloadURL()
+      console.log(url.value)
     } catch (err) {
       try {
         const res = await storageRef.put(file)
@@ -27,7 +28,13 @@ const useStorage = () => {
   }
   const deleteImage = async (path) => {
     const storageRef = projectStorage.ref(path)
+    const collectionRef = projectFirestore.collection('playlists').where('filePath', '==', path)
     try {
+      const data = [];
+      (await collectionRef.get()).docs.forEach(doc => data.push(doc))
+      if (data.length) {
+        throw new Error('Other documents with this image exist')
+      }
       await storageRef.delete()
       error.value = ''
     } catch (e) {
