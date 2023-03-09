@@ -1,25 +1,31 @@
-import { db } from '@/Firebase/config'
-import { ref } from 'vue'
-import { collection, getDocs } from 'firebase/firestore/lite';
+import { db, app } from '@/Firebase/config'
+import { ref, watchEffect } from 'vue'
+import { onSnapshot, collection, query } from 'firebase/firestore';
 
 
-const books = ref(null)
-const error = ref(null)
-const isPending = ref(false)
-const getBooks = async () => {
-  const booksCollection = collection(db, 'books')
+const getBooks = () => {
+  const books = ref(null)
+  const error = ref(null)
+  const isPending = ref(false)
   isPending.value = true
-  try {
-    const booksSnapshot = await getDocs(booksCollection)
-    books.value = booksSnapshot.docs.map(doc => doc.data())
+  const booksCollection = query(collection(db, 'books'))
+  const unsubscribe = onSnapshot(booksCollection, (snap) => {
+    const results = []
+    snap.docs.forEach(doc => { results.push({ ...doc.data(), id: doc.id }) })
+    books.value = results
     error.value = null
     isPending.value = false
-  } catch (e) {
+  }, (e) => {
     books.value = null
     error.value = "can't fetch data"
     console.log(e.message)
     isPending.value = false
-  }
+  })
+  watchEffect((onInvalidate) => {
+    onInvalidate(() => unsubscribe())
+  })
+  return { error, isPending, books }
 }
-getBooks()
-export { error, books, isPending }
+
+
+export default getBooks

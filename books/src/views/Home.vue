@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <ul>
+    <ul v-if="books">
       <li v-for="book in books" :key="book.id">
         <div class="details">
           <h3>{{ book.title }}</h3>
@@ -18,14 +18,14 @@
 </template>
 
 <script>
-import { ref } from "vue";
 import CreateBookForm from "@/components/CreateBookForm";
 import Spinner from "@/components/Spinner";
-import { books, error, isPending } from "@/composables/getBooks";
+import getBooks from "@/composables/getBooks";
 export default {
   name: "Home",
   components: { CreateBookForm, Spinner },
   setup() {
+    const { error, books, isPending } = getBooks();
     return { books, error, isPending };
   },
 };
