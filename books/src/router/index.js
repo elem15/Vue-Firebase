@@ -1,3 +1,5 @@
+import { user } from '@/composables/useAuth'
+import { auth } from '@/Firebase/config'
 import { createRouter, createWebHistory } from 'vue-router'
 
 // view components
@@ -5,11 +7,19 @@ import Home from '../views/Home.vue'
 import Login from '../views/Login.vue'
 import Signup from '../views/Signup.vue'
 
+const requireAuth = (to, from, next) => {
+  if (!user.value) {
+    next({ name: 'Login' })
+  } else {
+    next()
+  }
+}
 const routes = [
   {
     path: '/',
     name: 'Home',
-    component: Home
+    component: Home,
+    beforeEnter: requireAuth
   },
   {
     path: '/login',

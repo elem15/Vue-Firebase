@@ -3,10 +3,14 @@
     <ul v-if="books">
       <li v-for="book in books" :key="book.id">
         <div class="details">
-          <h3>{{ book.title }}</h3>
+          <h3 @click="removeDoc(book.id)">{{ book.title }}</h3>
           <p>By {{ book.author }}</p>
         </div>
-        <div class="icon">
+        <div
+          class="icon"
+          :class="{ fav: book.isFav }"
+          @click="setFav(book.id, book.isFav)"
+        >
           <span class="material-icons">favorite</span>
         </div>
       </li>
@@ -21,12 +25,19 @@
 import CreateBookForm from "@/components/CreateBookForm";
 import Spinner from "@/components/Spinner";
 import getCollection from "@/composables/getCollection";
+import useCollection from "@/composables/useCollection";
 export default {
   name: "Home",
   components: { CreateBookForm, Spinner },
   setup() {
     const { error, books, isPending } = getCollection("books");
-    return { books, error, isPending };
+    const { removeDoc, changeDoc } = useCollection("books");
+    const setFav = async (id, fav) => {
+      await changeDoc(id, {
+        isFav: !fav,
+      });
+    };
+    return { books, error, isPending, removeDoc, setFav };
   },
 };
 </script>
@@ -60,5 +71,8 @@ export default {
 .icon {
   color: #bbbbbb;
   cursor: pointer;
+}
+.icon.fav {
+  color: #c00000;
 }
 </style>
