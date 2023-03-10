@@ -1,14 +1,14 @@
-import { db, app } from '@/Firebase/config'
+import { db } from '@/Firebase/config'
 import { ref, watchEffect } from 'vue'
-import { onSnapshot, collection, query } from 'firebase/firestore';
+import { onSnapshot, collection } from 'firebase/firestore';
 
 
-const getBooks = () => {
+const getBooks = (c) => {
   const books = ref(null)
   const error = ref(null)
   const isPending = ref(false)
   isPending.value = true
-  const booksCollection = query(collection(db, 'books'))
+  const booksCollection = collection(db, c)
   const unsubscribe = onSnapshot(booksCollection, (snap) => {
     const results = []
     snap.docs.forEach(doc => { results.push({ ...doc.data(), id: doc.id }) })

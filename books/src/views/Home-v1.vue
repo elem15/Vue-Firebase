@@ -20,12 +20,11 @@
 <script>
 import CreateBookForm from "@/components/CreateBookForm";
 import Spinner from "@/components/Spinner";
-import getCollection from "@/composables/getCollection";
+import { error, books, isPending } from "@/composables/getBooks";
 export default {
   name: "Home",
   components: { CreateBookForm, Spinner },
   setup() {
-    const { error, books, isPending } = getCollection("books");
     return { books, error, isPending };
   },
 };

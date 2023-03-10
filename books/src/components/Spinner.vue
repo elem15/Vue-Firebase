@@ -1,5 +1,7 @@
 <template>
-  <div class="spin"></div>
+  <div class="spin-wrapper">
+    <div class="spin"></div>
+  </div>
 </template>
 
 <script>
@@ -7,9 +9,18 @@ export default {};
 </script>
 
 <style>
+.spin-wrapper {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 1000;
+  height: 100vh;
+  width: 100vw;
+}
 .spin {
+  position: absolute;
   display: block;
-  margin: 30px auto;
+  margin: 300px calc(50% - 20px);
   width: 40px;
   height: 40px;
   border: 4px solid transparent;

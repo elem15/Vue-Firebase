@@ -3,30 +3,45 @@
     <h3>Add a New Book</h3>
 
     <label for="title">Book title:</label>
-    <input type="text" name="title" v-model="title" required>
+    <input type="text" name="title" v-model="title" required />
 
     <label for="author">Book author:</label>
-    <input type="text" name="author" v-model="author" required>
+    <input type="text" name="author" v-model="author" required />
 
     <button>Add Book</button>
+    <div class="error">{{ error }}</div>
   </form>
+  <div v-if="isPending"><Spinner /></div>
 </template>
 
 <script>
-import { ref } from 'vue'
-
+import useCollection from "@/composables/useCollection";
+import { ref } from "vue";
+import Spinner from "./Spinner.vue";
 export default {
+  components: {
+    Spinner,
+  },
   setup() {
-    const title = ref('')
-    const author = ref('')
+    const title = ref("");
+    const author = ref("");
 
+    const { error, isPending, createDoc } = useCollection("books");
     const handleSubmit = async () => {
-      console.log(title.value, author.value)
-    }
+      console.log(title.value, author.value);
+      const document = {
+        title: title.value,
+        author: author.value,
+        isFav: false,
+      };
+      await createDoc(document);
+      title.value = "";
+      author.value = "";
+    };
 
-    return { handleSubmit, title, author }
-  }
-}
+    return { handleSubmit, title, author, error, isPending };
+  },
+};
 </script>
 
 <style>

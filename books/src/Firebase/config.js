@@ -1,5 +1,6 @@
 import { initializeApp } from 'firebase/app'
-import { getFirestore } from 'firebase/firestore'
+// import { getFirestore } from 'firebase/firestore/lite' // for getData()
+import { getFirestore } from 'firebase/firestore' // for snapShot
 const firebaseConfig = {
   apiKey: "AIzaSyASMRJPOy2O8lCKYjnjLZnd7BggoYNVYiM",
   authDomain: "books-3b7aa.firebaseapp.com",
@@ -10,4 +11,4 @@ const firebaseConfig = {
 };
 const app = initializeApp(firebaseConfig)
 const db = getFirestore(app);
-export { db, app }
+export { db }
