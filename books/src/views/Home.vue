@@ -26,11 +26,16 @@ import CreateBookForm from "@/components/CreateBookForm";
 import Spinner from "@/components/Spinner";
 import getCollection from "@/composables/getCollection";
 import useCollection from "@/composables/useCollection";
+import { user } from "@/composables/useAuth";
 export default {
   name: "Home",
   components: { CreateBookForm, Spinner },
   setup() {
-    const { error, books, isPending } = getCollection("books");
+    const { error, books, isPending } = getCollection("books", [
+      "userId",
+      "==",
+      user.value.uid,
+    ]);
     const { removeDoc, changeDoc } = useCollection("books");
     const setFav = async (id, fav) => {
       await changeDoc(id, {

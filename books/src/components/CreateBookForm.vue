@@ -18,6 +18,7 @@
 import useCollection from "@/composables/useCollection";
 import { ref } from "vue";
 import Spinner from "./Spinner.vue";
+import { user } from "@/composables/useAuth";
 export default {
   components: {
     Spinner,
@@ -28,11 +29,11 @@ export default {
 
     const { error, isPending, createDoc } = useCollection("books");
     const handleSubmit = async () => {
-      console.log(title.value, author.value);
       const document = {
         title: title.value,
         author: author.value,
         isFav: false,
+        userId: user.value.uid,
       };
       await createDoc(document);
       title.value = "";

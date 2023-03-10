@@ -34,10 +34,8 @@ const login = async (userData) => {
 onAuthStateChanged(auth, (activeUser) => {
   if (activeUser) {
     user.value = activeUser
-    console.log(user.value.email)
   } else {
     user.value = null
-    console.log(user.value)
   }
 })
 export { error, isPending, user, signup, login }
