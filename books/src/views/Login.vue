@@ -16,7 +16,7 @@
 
 <script>
 import { ref } from "vue";
-import { error, isPending, login, user } from "@/composables/useAuth";
+import { error, isPending, login } from "@/composables/useAuth";
 import router from "@/router";
 
 export default {
